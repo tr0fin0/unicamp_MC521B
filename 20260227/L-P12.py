@@ -2,38 +2,62 @@
 
 
 def main():
-    def factorial(n, r = 0):
-        if n==0:
-            return 1
-
-        fact = 1
-        for i in range(1, n - r + 1):
-            fact *= i
-
-        return fact
-
-    def letters(s):
-        d = {}
-        for i in s:
-            d[i] = d.get(i,0) + 1
-
-        return d
-
-    S: str = input()
+    def factorials(m, n):
+        for i in range(1, n + 1):
+            FACTORIALS[i] = FACTORIALS[i-1] * i % m
 
 
-    word = letters(S)
-    size = len(word)
-    print(f"word\t{word}")
-    print(f"size\t{size}")
+    def frequencies(string):
+        f = {}
+        for letter in string:
+            f[letter] = f.get(letter, 0) + 1
 
-    permutations = 0
-    for i in range(1, size + 2):
-        print(f"i\t{i}")
-        permutations += factorial(size)
+        return f
 
 
-    print(permutations % 998244353)
+    def permutation(letters):
+        frequencies = list(letters.values())
+        frequencies_sum = sum(frequencies)
+
+        if frequencies_sum == 0:
+            return 0
+
+        den = 1
+        for frequency in frequencies:
+            den = den * FACTORIALS[frequency] % M
+
+        num = FACTORIALS[frequencies_sum]
+        return num * pow(den, M - 2, M) % M
+
+
+    def permutations(letters):
+        combinations = 0
+
+        for letter in letters:
+            if letters[letter] > 0:
+                letters[letter] -= 1
+
+                combinations += permutation(letters)
+                combinations %= M
+
+                combinations += permutations(letters)
+                combinations %= M
+
+                letters[letter] += 1
+
+        return combinations
+
+
+    S: str  = input()
+    M: int  = 998244353
+    N: int  = len(S)
+
+    FACTORIALS          = [1] * (N + 1)
+    factorials(M, N)
+
+
+    print(permutations(frequencies(S)) % M)
+
     return
 
 
