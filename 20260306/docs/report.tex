@@ -1,0 +1,80 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{
+    a4paper,            % Page Size
+    left    =20mm,      % Left   Margin
+    right   =20mm,      % Right  Margin
+    bottom  =20mm,      % Bottom Margin
+    top     =20mm,      % Top    Margin
+    marginparwidth=50mm %
+}
+
+
+
+\author{Guilherme Nunes Trofino - 217276}
+\title{MC521B - Relatório 20260306}
+
+\begin{document}
+
+\maketitle
+\section{\href{https://vjudge.net/problem/Baekjoon-16692}{A-P01 from Baekjoon 16692}}
+\paragraph{Descrição} Neste problema \texttt{C} clientes esperam em fila para serem atendidos por \texttt{N} atendentes numerados de 1 a \texttt{N}. Cada cliente $\texttt{C}_\texttt{i}$ demanda $\texttt{t}_\texttt{i}$ segundos de atendimento e será atendido pelo primeiro atendente desocupado, ou seja, pelo atendente com a atual menor duração de atendimento.
+
+\subsection{Solução}
+
+\paragraph{Inicialização} Inicializa-se este problema atribuindo as \texttt{N} primeiras durações de atendimentos para os primeiros \texttt{N} clientes na variável \texttt{waiting} e atribuindo os primeiros \texttt{N} números de atendentes na variável \texttt{sequence} de forma que:
+\begin{itemize}
+    \item \texttt{waiting }: armazena a duração atual do atendimento de cada atendente em segundos
+    \item \texttt{sequence}: armazena a sequência de atendimentos de acordo com a política proposta
+\end{itemize}
+
+\paragraph{Interações} Em seguida, executa-se para os \texttt{C - N} clientes o seguinte procedimento:
+\begin{enumerate}
+    \item obtém-se a duração \texttt{v} da atual menor duração de atendimento
+    \item obtém-se o indice \texttt{i} da atual menor duração de atendimento
+    \item adiciona-se \texttt{i} ao fim da variável \texttt{sequence}
+    \item subtrai-se \texttt{v} de todas as durações de atendimento atuais em \texttt{waiting}
+    \item atribui-se a duração do próximo cliente a \texttt{waiting[i]}
+\end{enumerate}
+Finalmente, retorna-se a sequência de atendentes para cada cliente $\texttt{C}_\texttt{i}$ de acordo com os valores armazenados em \texttt{sequence} formatados como texto contínuo.
+
+
+
+\newpage
+\section{\href{https://vjudge.net/problem/Aizu-0151}{B-P02 from Aizu 0151}}
+
+\paragraph{Descrição} Neste problema matrizes de ocupação de tamanho \texttt{N} por \texttt{N} possuem 0s ou 1s em cada uma de suas entradas, desejando-se obter a mais longa sequência de 1s seja em uma horizontal, uma vertical ou uma diagonal para cada matriz.
+
+\subsection{Solução}
+
+\paragraph{Inicialização} Inicializa-se este problema pela criação de:
+\begin{itemize}
+    \item \texttt{grid}: matriz de ocupação de tamanho \texttt{N} por \texttt{N} de acordo com as entradas recebidas
+    \item \texttt{sequences}: vetor de tamanho \texttt{6*N-2} armazenando a atual sequência de 1s mais longa para cada direção
+    \item \texttt{max\_sequence}: inteiro armazenando a atual sequência de 1s mais longa
+\end{itemize}
+\texttt{sequences} possui tamanho \texttt{6*N-2} pois há \texttt{N} linhas horizontais chamadas de direção \texttt{row}, \texttt{N} colunas verticais chamadas de direção \texttt{col}, \texttt{2*N-1} diagonais noroeste-sudeste chamadas de direção \texttt{dnw} e \texttt{2*N-1} diagonais nordeste-sudoeste chamadas de direção \texttt{dne} em uma matriz \texttt{N} por \texttt{N} que podem apresentar uma sequência de 1s.
+
+\paragraph{Interações} Em seguida, executa-se para cada linha \texttt{i} e coluna \texttt{j} de \texttt{grid} o seguinte procedimento:
+\begin{enumerate}
+    \item se o \texttt{grid[i][j] == 1} para cada direção \texttt{pos} possível
+    \begin{enumerate}
+        \item incrementa-se \texttt{sequences[pos]} de 1
+        \item se \texttt{sequences[pos] > max\_sequence}, \texttt{max\_sequence} assumi \texttt{sequences[pos]}
+    \end{enumerate}
+    \item se o \texttt{grid[i][j] != 1} para cada direção \texttt{pos} possível
+    \begin{enumerate}
+        \item atribui-se 0 a \texttt{sequences[pos]}
+    \end{enumerate}
+\end{enumerate}
+Finalmente, retorna-se \texttt{max\_sequence} como solução final.
+
+
+\end{document}
