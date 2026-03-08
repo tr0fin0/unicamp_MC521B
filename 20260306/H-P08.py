@@ -1,4 +1,4 @@
-# H - How many ways? 
+# H - How many ways?
 
 
 def main() -> None:

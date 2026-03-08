@@ -13,7 +13,7 @@ def main() ->  None:
 
         sequence.append(i + 1)
 
-        waiting = [ x - v for x in waiting]
+        waiting = [ x - v for x in waiting ]
         waiting[i] = customer
 
     print(" ".join(str(x) for x in sequence))
