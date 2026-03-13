@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, portuguese]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\geometry{
+    a4paper,            % Page Size
+    left    =20mm,      % Left   Margin
+    right   =20mm,      % Right  Margin
+    bottom  =20mm,      % Bottom Margin
+    top     =20mm,      % Top    Margin
+    marginparwidth=50mm %
+}
+
+
+
+\author{Guilherme Nunes Trofino - 217276}
+\title{MC521B - Relatório }
+
+\begin{document}
+
+\maketitle
+\section{\href{https://atcoder.jp/contests/abc412/tasks/abc412_b?lang=en}{ABC412 B from AtCoder}}
+\paragraph{Descrição}Neste problema as palavras \texttt{S} e \texttt{T} constituidas de caracteres minúsculos e maiúsculos do inglês e deseja-se determinar se a palavra \texttt{S} satisfaz a seguinte condição:
+\begin{enumerate}
+    \item todas as letras maiúsculas de \texttt{S} que não a iniciam devem ser precedidas por um caracter pertencente a \texttt{T}
+\end{enumerate}
+
+\subsection{Solução}
+
+\paragraph{Inicialização}Inicia-se a solução recuperando as palavras \texttt{S} e \texttt{T}.
+
+\paragraph{Execução}Na sequência percorre-se cada caracter da palavra \texttt{S} a partir da segunda letra inclusa e realiza-se a seguinte avaliação:
+\begin{enumerate}
+    \item caso o caracter atual \texttt{c} seja maiúsculo
+    \begin{equation}
+        \texttt{c == c.upper()}
+    \end{equation}
+    \item caso o caracter anterior a \texttt{c} \texttt{S[i-1]} pertença a \texttt{T}
+    \begin{equation}
+        \texttt{S[i-1] not in T}
+    \end{equation}
+\end{enumerate}
+Caso ambas as condições sejam verdadeiras, o algoritmo retornará imediatamente que a resposta \texttt{No} visto que \texttt{S} não respeita a condição requirida. Por outro lado, caso a primeira condição seja verdadeira e a segunda condição seja falsa para todos os caracteres maiúsculos da palavra \texttt{S}, o algoritmo retornará a resposta \texttt{Yes}.
+
+
+
+\newpage
+\section{\href{https://atcoder.jp/contests/past202107-open/tasks/past202107_b?lang=en}{past202107 B from AtCoder}}
+\paragraph{Descrição}
+
+\subsection{Solução}Neste problema há \texttt{A} bolas e \texttt{B} balões das quais serão removidas uma bola por vez até que no máximo a quantidade de bolas seja igual a \texttt{C} vezes a quantidade de balões.
+
+\paragraph{Inicialização}Inicia-se a solução recuperando os valores \texttt{A}, \texttt{B} e \texttt{C}.
+
+\paragraph{Execução}Na sequência subtrai-se 1 de \texttt{A} enquanto \texttt{A > B * C} retornando o resultado da divisão de \texttt{A/B} assim que a condição anteriomente mencionada não seja válida.
+
+\end{document}
